@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {# <p>Afficher le prénom de la personne : {{ personne["prenom"] }}</p> #}
+    <p>Afficher le prénom de la personne : {{ personne.prenom }}</p>
+
+    <p>La personne s'appelle <strong>{{ personne.prenom ~ " " ~ personne.nom }}</strong> 
+        et, est agée de <strong>{{ personne.age }}</strong> ans.</p>
+    
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tous les genres{% endblock %}
+
+{% block titreH1 %}Tous les genres{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-4">
+        <ul class="list-group ">
+            <li class="list-group-item">
+                <h4 class="row">
+                    <strong class="col-3 text-right">Libellé</strong>
+                    <span class="col-9  d-flex justify-content-between align-items-center" >
+                        {{ genre.libelle }}
+
+                        <span class="badge badge-primary badge-pill"> <i class="fa fa-{{ genre.livres|length ? "check" : "times" }}"></i> </span>
+                    </span>
+                </h4>
+            </li>
+            
+            <li class="list-group-item">
+                <h4 class="row">
+                    <strong class="col-3 text-right">Mots clés</strong>
+                    <span class="col-9">{{ genre.motsCles }}</span>
+                </h4>
+            </li>
+        </ul> 
+    </div>
+    <div class="col-8">
+        <li class="list-group-item">
+            <h4 class="row">
+                <strong class="col-3 text-right">Livres</strong>
+                <ul>
+                {% for livre in genre.livres %}
+                    {{ include("_common/_vignette_livre.html.twig") }}
+                {% endfor %}
+                </ul>
+                
+            </h4>
+        </li>
+    </div>
+</div>
+
+
+<a href="{{ path("app_home_genres") }}" class="btn btn-primary mt-5"><i class="fa fa-reply"></i> Retour</a>
+
+
+{% endblock %}

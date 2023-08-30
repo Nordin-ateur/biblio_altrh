@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Fiche Livre{% endblock %}
+
+{% block titre %}Fiche du livre n°{{ livre.id }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-3">
+            {# {{ livre.couverture|img("couvertures")|raw }} #}
+            <img src="{{ chemin_images ~ livre.couverture }}" alt="couverture de {{ livre.titre }}">
+        </div>
+        <div class="col-9">
+            <ul class="list-group ">
+                <li class="list-group-item">
+                    <h2 class="row">
+                        <strong class="col-3 text-right">Titre</strong>
+                        <span class="col-9  d-flex justify-content-between align-items-center" >
+                            {{ livre.titre }}
+
+                            {# <span class="badge badge-primary badge-pill"> <i class="fa fa-{{ livre.dispo ? "check" : "times" }}"></i> </span> #}
+                        </span>
+
+                    </h2>
+                </li>
+                
+                <li class="list-group-item">
+                    <h3 class="row">
+                        <strong class="col-3 text-right">Auteur</strong>
+                        <span class="col-9">{{ livre.auteur.identite }}</span>
+                    </h3>
+                </li>
+                
+                <li class="list-group-item">
+                    <h4 class="row">
+                        <strong class="col-3 text-right">Genres</strong>
+                        <span class="col-9">
+                            {% for genre in livre.genres %}
+                                <a href="{{ path('app_home_genre', {id: genre.id}) }}">{{ genre.libelle }}</a>  {{ loop.last ? "" : ", " }}
+                            {% endfor %}
+                        </span>
+                    </h4>
+                </li>
+
+                <li class="list-group-item">
+                    <h5 class="row">
+                        <strong class="col-3 text-right">Résumé</strong>
+                        <span class="col-9">{{ livre.resume }}</span>
+                    </h5>
+                </li>
+
+
+
+
+                <li class="list-group-item">
+                    <h6 class="row">
+                        <strong class="col-3 text-right">Popularité</strong>
+                        <span class="col-9"> 
+                            <span class="badge badge-primary badge-pill text-dark">Emprunté {{ livre.emprunts|length }} fois </span>
+                        </span>
+                    </h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="row">
+                        <strong class="col-3 text-right">Disponible</strong>
+                        <span class="col-9"> 
+                            <span class="badge badge-primary badge-pill ">{{ livre.disponible ? "✔" : "❌" }} </span>
+                        </span>
+                    </h6>
+                </li>
+            </ul> 
+        </div>
+    </div>
+    
+
+    <a href="{{ path("app_home") }}" class="btn btn-primary mt-5"><i class="fa fa-home"></i> Retour</a>
+
+    {% if is_granted("ROLE_LECTEUR") %}
+        <a href="" class="btn btn-success mt-5">Emprunter</a>
+    {% endif %}
+
+
+{% endblock %}

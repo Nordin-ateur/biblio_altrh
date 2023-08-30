@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultat recherche{% endblock %}
+
+{% block titreH1 %}
+Résultats de la recherche de : <code>{{ mot }}</code>
+{% endblock %}
+
+{% block body %}
+<p>Recherche dans le titre et le résumé des livres</p>
+
+<div class="d-flex flex-wrap">
+{% for livre in livres %}
+    {{ include ("_common/_vignette_livre.html.twig") }}
+{% endfor %}
+</div>
+
+{% endblock %}

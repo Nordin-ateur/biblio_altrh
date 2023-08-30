@@ -1,0 +1,30 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Emprunt{% endblock %}
+
+{% block body %}
+    <h1>Emprunt</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entite.id }}</td>
+            </tr>
+            <tr>
+                <th>DateEmprunt</th>
+                <td>{{ entite.dateEmprunt ? entite.dateEmprunt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateRetour</th>
+                <td>{{ entite.dateRetour ? entite.dateRetour|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_emprunt_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_emprunt_edit', {'id': entite.id}) }}"><i class="fa fa-edit"></i></a>
+
+    {{ include('_common/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Edit Abonne{% endblock %}
+
+{% block titreH1 %}Modifier un abonné{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/abonne/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

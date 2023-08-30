@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche Auteur{% endblock %}
+
+{% block titreH1 %}Fiche auteur{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Identité</th>
+                <td>{{ auteur.identite }}</td>
+            </tr>
+
+            <tr>
+                <th>Biographie</th>
+                <td>{{ auteur.bio }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ auteur.naissance ? auteur.naissance|date('d/m/Y') : 'inconnue' }}</td>
+            </tr>
+
+            <tr>
+                <th>Livres</th>
+                <td>
+                    <div class="d-flex flex-wrap">
+                    {% for livre in auteur.livres %}
+                        {{ include("_common/_vignette_livre.html.twig") }}
+                    {% else %}
+                        Aucun livre de cet auteur n'a été trouvé
+                    {% endfor %}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

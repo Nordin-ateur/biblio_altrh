@@ -1,0 +1,60 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block titreH1 %}Liste des livres{% endblock %}
+
+{% block body %}
+    
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Couverture</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Résumé</th>
+                <th>Genres</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }} {{ livre.disponible ? "✔" : "❌" }}</td>
+                <td>
+                    {% if livre.couverture %}
+                        {# <img src="{{ chemin_images ~ livre.couverture }}" alt="couverture manquante" class="miniature"> #}
+                        {{ livre.couverture|img("miniature", "couverture manquante")|raw }}
+                    {% else %}
+                        <img alt="couverture manquante" class="miniature">  
+                    {% endif %}
+                </td>
+                <td>{{ livre.titre }}</td>
+                    
+                {# <td>{{ livreauteur.prenom ~ " " ~ livre.auteur.nom }}</td> #}
+                <td>{{ livre.auteur.identite }}</td>
+
+                {# <td>{{ extrait(livre.resume, 20) }}</td> #}
+                <td>{{ livre.resume|extrait(30) }}</td>
+
+                <td>
+                {% for genre in livre.genres %}
+                    {{ genre.libelle ~ (loop.last ? "" : ", ") }}
+                {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_livre_new') }}">Create new</a>
+{% endblock %}

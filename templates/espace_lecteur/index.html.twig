@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Lecteur{% endblock %}
+
+{% block titreH1 %}Mon espace lecteur{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro d'abonné</th>
+                <td>{{ app.user.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ app.user.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Accès</th>
+                <td>
+                    {% for role in app.user.roles %}
+                        {% if role == "ROLE_USER" %}
+                            Abonné
+                        {% elseif role == "ROLE_LECTEUR" %}
+                            Lecteur
+                        {% elseif role == "ROLE_BIBLIO" %}
+                            Bibliothécaire
+                        {% elseif role == "ROLE_DEV" %}
+                            Développeur
+                        {% elseif role == "ROLE_ADMIN" %}
+                            Administrateur
+                        {% endif %}
+                        {{ loop.last ? "" : "," }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Mot de passe</th>
+                <td>*****</td>
+            </tr>
+            <tr>
+                <th>Identité</th>
+                <td>{{ app.user.prenom ~ " " ~ app.user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ app.user.naissance ? app.user.naissance|date() : '' }}</td>
+            </tr>
+
+            <tr>
+                <th>Mes emprunts</th>
+                <td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Livre</th>
+                                <th>Emprunté le</th>
+                                <th>Rendu le</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for emprunt in app.user.emprunts %}
+                            <tr>
+                                <td>{{ emprunt.livre.titreAuteur }}</td>
+                                <td>{{ emprunt.dateEmprunt|date() }}</td>
+                                <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date() : "à rendre" }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

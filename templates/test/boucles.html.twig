@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+{# FOR 
+
+for($i = 0; $i < 10; $i++) { ... }
+{% for i in 0..9 %}  ... {% endfor %}
+
+#}
+<table class="table">
+{% for i in 0..9 %}
+    <tr>
+        <td>{{ i + 1 }}</td>
+    </tr>
+{% endfor %}
+
+{% for i in 1..10 %}
+    <tr>
+        <td>{{ i + 1 }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<hr>
+{% for i in 'A'..'z' %}
+    {{ i }}
+{% endfor %}
+
+<hr>
+<h1>TABLEAUX</h1>
+<h3>Afficher une valeur</h3>
+<p>2<sup>ème</sup> valeur : {{ tab[1] }}</p>
+
+<h3>Afficher toutes les valeurs</h3>
+<ul>
+{% for i in 0 .. longueur - 1 %}
+    <li>{{ tab[i] }}</li>
+{% endfor %}
+</ul>
+
+<h3>FOREACH</h3>
+{# 
+foreach($tab as $val) { ... }
+{% for val in tab %} ... {% endfor %}
+
+foreach($tab as $key => $val) { .. }
+{% for key, val in tab %} ... {% endfor %}
+
+#}
+<ul>
+{% for val in tab %}
+    <li>{{ val }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

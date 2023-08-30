@@ -5,12 +5,50 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {{ include("_common/_menu.html.twig") }}
+            {{ include("_common/_messages.html.twig") }}
+
+            <h1 class="text-center bg-{% block bg %}secondary{% endblock %}">{% block titreH1 %}Bienvenue à la bibliothèque{% endblock %}</h1>
+            {% block body %}
+                <p>Règles de Twig</p>
+                <ul class="list-group-item">
+                    <li>Pas de balises PHP</li>
+                    <li>Syntaxe : mêmes règles que pour HTML pour les balises </li>
+                    <li>Pour afficher la valeur d'une expression, on utilise les doubles accolades</li>
+                    <li>Un fichier twig qui commence par la balise <code>extends</code> hérite du fichier défini dans 
+                        cette balise</li>
+                    <li>Quand un fichier hérite, il ne peut pas avoir du contenu en dehors d'une balise <code>block</code></li>
+                </ul>
+            {% endblock %}
+
+            <footer class="bg-dark text-white mt-5">
+            {% block footer %}
+                <p>Ceci est le footer</p>
+            {% endblock %}
+            </footer>
+        </div>
     </body>
 </html>
+
+{# COMMENTAIRES #}
+{# 
+    {% type [ attributs ] %}    : balise twig
+    {% endtype %}               : balise de fermeture
+    {{ expression }}            : équivalent de la balise echo de PHP <?= expression ?>
+
+    HÉRITAGE
+    {% extends 'nom_template_parent' %} : permet à la vue d'hériter d'une autre vue.
+        - si une vue hérite, le contenu de ses balises 'block' remplace le contenu des balises 'block' de la vue mère
+        - la balise extends doit être  au début du fichier
+        - il ne peut y avoir de contenu en dehors d'une balise 'block'
+
+#}

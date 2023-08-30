@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<p> Le résultat de l'addition est : </p>
+{{ nb1 }} + {{ nb2 }} = {{ nb1 + nb2 }}
+
+{# CONCATENATION : ~ #}
+<p>En utilisant la concaténation : </p>
+{# <p>{{ nb1 ~ " + " ~ nb2 }}</p> #}
+<p>{{ nb1 ~ " + " ~ nb2 ~ " = " ~ (nb1 + nb2) }}</p>
+
+<hr>
+{# CONDITION #}
+{% if nb1 > nb2 %}
+    <p>{{ nb1 }} est supérieur à {{ nb2 }}</p>
+{% endif %}
+
+<hr>
+
+{% if nb1 > nb2 %}
+    <p>{{ nb1 }} est supérieur à {{ nb2 }}</p>
+{% else %}
+    <p>{{ nb1 }} est inférieur ou égal à {{ nb2 }}</p>  
+{% endif %}
+
+<hr>
+
+{% if nb1 > nb2 %}
+    <p>{{ nb1 }} est supérieur à {{ nb2 }}</p>
+{% elseif nb1 < nb2 %}
+    <p>{{ nb1 }} est inférieur à {{ nb2 }}</p>  
+{% else %}
+    <p>{{ nb1 }} est égal à {{ nb2 }}</p>  
+{% endif %}
+
+<hr><hr>
+<h2>EGALITE</h2>
+{% if nb1 == nb2 %}
+    <p>Ils sont égaux</p>
+{% else %}
+    <p>Ils sont différents</p>
+        
+{% endif %}
+
+{# TESTS : ce sont des fonctions qui s'utilisent avec l'opérateur 'is'
+            et qui retourne un booléen #}
+{% if nb1 is same as nb2 %}
+    <p>Ils sont strictement égaux</p>
+{% else %}
+    <p>Ils sont strictement différents</p>
+{% endif %}
+
+<hr>
+{# OPERATEURS LOGIQUE : and, or, not #}
+{% if not (nb1 > nb2) and nb1 >= 0 %}
+    <p>{{ nb1 }} est positif et inférieur ou égal à {{ nb2 }}</p>
+{% endif %}
+
+
+{% endblock %}
+

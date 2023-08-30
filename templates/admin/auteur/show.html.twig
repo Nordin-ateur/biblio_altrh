@@ -1,0 +1,71 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Auteur{% endblock %}
+
+{% block titreH1 %}Fiche auteur{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ auteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ auteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ auteur.bio }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ auteur.naissance ? auteur.naissance|date('d/m/Y') : '' }}</td>
+            </tr>
+
+            <tr>
+                <th>Livres</th>
+                <td>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Titre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for livre in auteur.livres %}
+                            <tr>
+                                <td>{{ livre.id }}</td>
+                                <td>
+                                    <a href="{{ path('app_admin_livre_show', {id: livre.id}) }}">{{ livre.titre }}</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="2">Aucun livre de cet auteur n'a été trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <a href="{{ path('app_admin_auteur_index') }}" class="btn btn-secondary">Retour</a>
+
+        <a href="{{ path('app_admin_auteur_edit', {'id': auteur.id}) }}" class="btn btn-info">Modification</a>
+
+        {{ include('_common/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

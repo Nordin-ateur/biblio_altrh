@@ -1,0 +1,10 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Edit Emprunt{% endblock %}
+
+{% block body %}
+    <h1>Modifier un emprunt</h1>
+
+    {{ include('admin/emprunt/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

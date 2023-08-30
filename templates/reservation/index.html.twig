@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes réservations{% endblock %}
+
+{% block titreH1 %}Mes réservations{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <td>Date</td>
+                <td>Livre</td>
+                <td> <i class="fa fa-cogs"></i> </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in panier %}
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>
+                        <img src="{{ chemin_images ~ item.livre.couverture }}" alt="couverture de {{ item.livre.titre }}" class="vignette">
+                        {{ item.livre.titreAuteur }}
+                    </td>
+                    <td>
+                        <a href=""><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune réservation en attente</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

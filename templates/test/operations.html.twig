@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block titreH1 %}Opérations artihmétiques{% endblock %}
+
+{% block body %}
+    <ul>
+        <li>{{ nombre1 }} + {{ nombre2 }} = {{ nombre1 + nombre2 }}</li>
+        <li>{{ nombre1 }} - {{ nombre2 }} = {{ nombre1 - nombre2 }}</li>
+        <li>{{ nombre1 }} x {{ nombre2 }} = {{ nombre1 * nombre2 }}</li>
+        <li>{{ nombre1 }} / {{ nombre2 }} = {{ nombre1 / nombre2 }}</li>
+    </ul>
+{% endblock %}

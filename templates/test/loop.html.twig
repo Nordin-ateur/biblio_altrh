@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% if nombre is numeric %}
+    
+        {% for i in 1..nombre %}
+            {{ i ~ ", " }}
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger">{{ nombre }} n'est pas numérique</div>
+    {% endif %}
+{% endblock %}

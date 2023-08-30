@@ -1,0 +1,39 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Genre index{% endblock %}
+
+{% block body %}
+    <h1>Genre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libellé</th>
+                <th>Mots-Clés</th>
+                <th>Nb de livres</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.id }}</td>
+                <td>{{ genre.libelle }}</td>
+                <td>{{ genre.motsCles }}</td>
+                <td>{{ genre.livres|length }}</td>
+                <td>
+                    <a href="{{ path('app_admin_genre_show', {'id': genre.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('app_admin_genre_edit', {'id': genre.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_genre_new') }}">Create new</a>
+{% endblock %}

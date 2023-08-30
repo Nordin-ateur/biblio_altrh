@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genres{% endblock %}
+
+{% block body %}
+    <div class="row mx-0">
+        <h2 class="col">Tous les genres</h2>
+        <h3 class="col-1">(x{{ genres|length }})</h3>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex">
+            <div class="col bg-dark text-white">Libellé</div>
+            <div class="col bg-dark text-white">Mots clés </div>
+            <div class="col bg-dark text-white">Nb de livres</div>
+        </li>
+
+    {% for genre in genres %}
+
+        <li class="list-group-item d-flex">
+            <div class="col">
+                <a href="{{ path('app_home_genre', {id: genre.id}) }}">{{ genre.libelle}}</a></div>
+            <div class="col">{{ genre.motsCles }} </div>
+            <div class="col">{{ genre.livres|length }} livres</div>
+        </li>
+    {% else %}
+        <li class="list-group-item">Aucun genre n'est encore enregistré</i>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}
+
+

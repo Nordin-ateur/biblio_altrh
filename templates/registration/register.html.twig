@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block titreH1 %}Inscription{% endblock %}
+
+{% block body %}
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.pseudo) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+
+        <label for="">Identité</label>
+        <div class="d-flex">
+            {{ form_widget(registrationForm.prenom) }}
+            {{ form_widget(registrationForm.nom, {
+                attr: { placeholder: "Nom", class: "bg-warning" }  
+            }) }}        
+        </div>
+        <div class="d-flex">
+            {{ form_errors(registrationForm.prenom) }}
+            {{ form_errors(registrationForm.nom) }}
+        </div>
+        {{ form_row(registrationForm.naissance) }}
+        
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-success">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

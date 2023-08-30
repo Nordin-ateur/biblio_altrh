@@ -1,0 +1,10 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Edit Genre{% endblock %}
+
+{% block body %}
+    <h1>Modifier un genre</h1>
+
+    {{ include('admin/genre/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

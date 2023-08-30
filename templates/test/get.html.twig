@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block titreH1 %}Formulaire GET{% endblock %}
+
+{% block body %}
+
+<form >
+    <div class="form-group">
+        <label for="nombre1">Nombre 1</label>
+        <input type="number" name="nombre1" id="nombre1" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="nombre2">Nombre 2<sup>*</sup></label>
+        <input type="number" name="nombre2" id="nombre2" class="form-control" required>
+    </div> 
+
+
+    <div class="d-flex justify-content-between mt-5">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="reset" class="btn btn-warning">Effacer</button>
+    </div>
+</form>
+{% endblock %}

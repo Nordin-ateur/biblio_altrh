@@ -1,0 +1,10 @@
+{# MESSAGES FLASHES 
+    app.flashes est un array associatif. 
+        • Les indices correspondent au type des messages flashes.
+        • Les valeurs sont des arrays de string.
+#}
+{% for type, messages in app.flashes %}
+    {% for texte in messages %}
+        <div class="alert alert-{{ type }}">{{ texte|raw }}</div>
+    {% endfor %}
+{% endfor %}
